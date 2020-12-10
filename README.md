@@ -96,13 +96,13 @@ This test also tests the entire workflow of Case Based Reporting module. But ins
  You can execute the test with the below statement.  
    	behave --no-logcapture --include ./features/CBR_Multi_location_HIVCareContinuum  
   
-Testing CBR with OpenMRS, OpenHIM, OpenEMPI and OpenHSR  
-Two tests (CBR_HIVCareContinuum and  CBR_Multi_location_HIVCareContinuumSteps) discussed can also be used to CBR (Case Based Reporting) workflow that uses OpenSHR as shared health repository .  
+## Testing CBR with OpenMRS, OpenHIM, OpenEMPI and OpenHSR  
+ The two tests (CBR_HIVCareContinuum and  CBR_Multi_location_HIVCareContinuumSteps) discussed earlier can also be used to test CBR (Case Based Reporting) workflow that uses OpenSHR as shared health repository .  
    
-Assumptions    
+### Assumptions    
 User is familiarity with OpenMRS, OpenMRS Case Based Reporting (CBR) Module, Python, and BDD framework Behave is assumed.  Familiarity with HIE components is recommended.  
   
-Prerequisites     
+### Prerequisites     
 CBR_HIVCareContinuum and CBR_Multi_location_HIVCareContinuumSteps needs the following software   
   
   	Python version >= 3.7     
@@ -110,16 +110,17 @@ CBR_HIVCareContinuum and CBR_Multi_location_HIVCareContinuumSteps needs the foll
   	OpenMRS Platform version >= 2.2    
   	OpenMRS Module - Case Based Module version >= 2.0  (Not yet released)  
   	OpenMRS Module IDGen version >= 4.7    
-          OpenEMPI platform >= 3.5.0c            OpenHIM platform >= 1.13   
+    OpenEMPI platform >= 3.5.0c 
+    OpenHIM platform >= 1.13   
   	OpenHIM XDS-Mediator >= Latest (https://github.com/jembi/openhim-mediator-xds)  
   	OpenMRS instance with OpenSHR >= Latest (https://github.com/jembi/openshr)  
   
 Note: CBR module must be configured (OpenMRS Home -> Case Reports ->Configure) to use Case Report Format as HL7 CDA  	  
   
-Configuration  
+### Configuration  
 Update the config.json located under the config folder. All elements except HAPI-FHIR is needed for this test.   
 -	openmrsInstances needs to be configured with at least one OpenMRS instance.  
--	id       	    :   A unique value,  gets tied to the “server” value in the dataset     	  	  	       files located under data folder. If you add or modify this    	  	  	  	       value,  make sure the datasets are also updated.  
+-	id       	    :   A unique value,  gets tied to the “server” value in the dataset files located under data folder. If you add or modify this value,  make sure the datasets are also updated.  
 -	instanceName    : Can be any name, it’s for tester’s clarity.  
 -	baseUrl   	     : Replace server and port with OpenMRS instance info  
 -	username   : Username that can access the services of the above instance  
@@ -138,14 +139,15 @@ Update the config.json located under the config folder. All elements except HAPI
 -	password  : password of the above user  
   
   	  
-Executing the test  
-CBR_HIVCareContinuum  
-Additional Configuration : Before you execute this test, please update config.json, set dataFilename value as simulator-dataset-small.json  
+### Executing the test  
+
+#### CBR_HIVCareContinuum  
+##### Additional Configuration : Before you execute this test, please update config.json, set dataFilename value as simulator-dataset-small.json  
  You can execute the test with the below statement.  
    	behave --no-logcapture --include ./features/CBR_HIVCareContinuum  
   
-CBR_Multi_location_HIVCareContinuum  
-Additional Configuration: Before you execute this test, please update config.json, set dataFilename value as simulator-dataset-multiple-instances.json. Also, you need at least 2 OpenMRS instances running for this test.  
+#### CBR_Multi_location_HIVCareContinuum  
+##### Additional Configuration: Before you execute this test, please update config.json, set dataFilename value as simulator-dataset-multiple-instances.json. Also, you need at least 2 OpenMRS instances running for this test.  
   
  You can execute the test with the below statement.  
    	behave --no-logcapture --include ./features/CBR_Multi_location_HIVCareContinuum  
