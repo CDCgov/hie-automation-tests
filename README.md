@@ -1,59 +1,60 @@
-HIE Automation Testing Framework     
+# HIE Automation Testing Framework     
 HIE Automation Testing framework was built using Python and Behave to support automation testing of different HIE systems. Currently, this project automates the testing of the OpenMRS data load and  Case Based Reporting Module (CBR) workflows. Data is posted to OpenMRS and the state of the data is tested in different HIE systems (OpenMRS, OpenHIM, OpenSHR, OpenEMPI, and HAPI-FHIR)     
-Getting Started    
+
+# Getting Started    
 Currently, the testing framework contains 3 automation tests, one tests the bulk data load to OpenMRS and other 2 tests OpenMRS Case based Reporting module’s workflows.  
   
-Testing data load into OpenMRS  
+## Testing data load into OpenMRS  
 OpenMRS_BulkHIVDataLoad, A simple test that tests the bulk data load into an instance of OpenMRS and provides the user with the stats (Number of patients, encounters and observations records loaded).  
   
-Assumptions    
+### Assumptions    
 User is familiarity with OpenMRS, Python, and BDD framework Behave is assumed.  Familiarity with HIE components is recommended.  
   
-Prerequisites     
+### Prerequisites     
 OpenMRS_BulkHIVDataLoad needs the following software -   
   	Python version >= 3.7     
   	Behave version >= 1.2    
   	OpenMRS Platform version >= 2.2   
   
-Configuration  
-Update the config.json located under the config folder. Only 2 config elements (“datafilename” and “openmrsInstances”) are needed for this test. The other elements in the config file can be there or can be removed. They are optional. The value of datafilename needs to be 
-“simulatordataset-large.json” and openmrsInstances needs to be configured with at least one OpenMRS instance information.  
--	id    	     :   A unique value,  gets tied to the “server” value in the dataset files   	  	  	         located under data folder. If you add or modify this value, make                      	  	  	         sure the datasets are also updated.  
+### Configuration  
+Update the config.json located under the config folder. Only 2 config elements (“datafilename” and “openmrsInstances”) are needed for this test. The other elements in the config file can be there or can be removed. They are optional. The value of datafilename needs to be “simulatordataset-large.json” and openmrsInstances needs to be configured with at least one OpenMRS instance information.  
+-	id    	        :   A unique value,  gets tied to the “server” value in the dataset files located under data folder. If you add or modify this value, make                     	  	  	           sure the datasets are also updated.  
 -	instanceName    :   Can be any name, it’s for tester’s clarity.  
--	baseUrl   	     :   Replace server and port with OpenMRS instance info  
--	username       :   Username that can access the services of the above instance  
--	password       :   Password of the above user  
+-	baseUrl   	    :   Replace server and port with OpenMRS instance info  
+-	username        :   Username that can access the services of the above instance  
+-	password        :   Password of the above user  
   
-Executing the test  
+### Executing the test  
 You can execute the test with the below statement.  
      	behave --no-logcapture --include ./features/OpenMRS_BulkHIVDataLoad   
   
-Test Result : After the test executes, the user will see the stats being printed on the console.  
+#### Test Result : After the test executes, the user will see the stats being printed on the console.  
 Additionally, the user can query the Patient, Encounter and Obs tables to see the data posted.  
   
-Testing CBR with OpenMRS, OpenHIM, OpenEMPI and HAPI-FHIR  
+## Testing CBR with OpenMRS, OpenHIM, OpenEMPI and HAPI-FHIR  
 Two tests (CBR_HIVCareContinuum and  CBR_Multi_location_HIVCareContinuumSteps) were developed to test CBR (Case Based Reporting) workflow that uses HAPI-FHIR as shared health record as repository.  
    
-Assumptions    
+### Assumptions    
 User is familiarity with OpenMRS, OpenMRS Case Based Reporting (CBR) Module, Python, and BDD framework Behave is assumed.  Familiarity with HIE components is recommended.  
   
-Prerequisites     
-CBR_HIVCareContinuum and CBR_Multi_location_HIVCareContinuumSteps needs the following software   
+### Prerequisites      
+Both CBR_HIVCareContinuum and CBR_Multi_location_HIVCareContinuum tests needs the following software   
   
   	Python version >= 3.7     
   	Behave version >= 1.2    
   	OpenMRS Platform version >= 2.2    
   	OpenMRS Module - Case Based Module version >= 2.0  (Not yet released)  
- 	OpenMRS Module IDGen version >= 4.7    
-          OpenEMPI platform >= 3.5.0c  
-          OpenHIM platform >= 1.13   
-  	OpenHIM FHIR-Mediator >= Latest (Not yet released)   HAPIFHIR instance >= 4.2.0  
+  	OpenMRS Module IDGen version >= 4.7    
+    OpenEMPI platform >= 3.5.0c  
+    OpenHIM platform >= 1.13   
+  	OpenHIM FHIR-Mediator >= Latest (Not yet released)   HAPIFHIR instance >= 4.2.0 
+    
 Note: CBR module must be configured (OpenMRS Home -> Case Reports ->Configure) to use Case Report Format as HL7 FHIR  	  	  
   
-Configuration  
-Update the config.json located under the config folder. All elements except OpenSHR is needed for this test.   
+### Configuration  
+Update the config.json located under the config folder. All elements except OpenSHR is required for this test.   
 -	openmrsInstances needs to be configured with at least one OpenMRS instance.  
--	id       	    :   A unique value,  gets tied to the “server” value in the dataset     	  	  	       files located under data folder. If you add or modify this    	  	  	  	       value,  make sure the datasets are also updated.  
+-	id       	    :   A unique value,  gets tied to the “server” value in the dataset files located under data folder. If you add or modify this value,  make sure the datasets are also updated.  
 -	instanceName    : Can be any name, it’s for tester’s clarity.  
 -	baseUrl   	     : Replace server and port with OpenMRS instance info  
 -	username   : Username that can access the services of the above instance  
@@ -71,25 +72,26 @@ Update the config.json located under the config folder. All elements except Open
 -	username  : username that can access the services of the above instance  
 -	password  : password of the above user  
   
-Executing the test  
-CBR_HIVCareContinuum  
+###  Executing the test  
+
+#### CBR_HIVCareContinuum  
 This test tests the entire workflow of Case Based Reporting module. Based on the order of the events (Obs) specified on the Gherkin file, events (Obs) are posted to OpenMRS. For each event posted, the test confirms that -   
 1.	A Case report is created in OpenMRS  
 2.	Transaction is sent OpenHIM  
 3.	Patient Record is created or exists in OpenEMPI  
 4.	The case report gets stored in HAPI-FHIR   
   
-Additional Configuration : Before you execute this test, please update config.json, set dataFilename value as simulator-dataset-small.json  
+##### Additional Configuration : Before you execute this test, please update config.json, set dataFilename value as simulator-dataset-small.json  
  You can execute the test with the below statement.  
    	behave --no-logcapture --include ./features/CBR_HIVCareContinuum  
   
-CBR_Multi_location_HIVCareContinuum  
+#### CBR_Multi_location_HIVCareContinuum  
 This test also tests the entire workflow of Case Based Reporting module. But instead of posting data based on event as the previous test CBR_HIVCareContinuumSteps does, this test reads the data file, posts Patient records into multiple OpenMRS instances and posts all sentinel events sorted by date to OpenMRS instances. For each posted sentinel event, the test confirms that   
 1. A Case report is created in the OpenMRS instance the event was posted to. 2. Transaction is sent OpenHIM  
 3.	Patient Record is created or exists in OpenEMPI  
 4.	The case report gets stored in HAPI-FHIR or OpenSHR (based on the configuration in CBR module)  
   
-Additional Configuration: Before you execute this test, please update config.json, set dataFilename value as simulator-dataset-multiple-instances.json. Also, you need at least 2 OpenMRS instances running for this test.  
+##### Additional Configuration: Before you execute this test, please update config.json, set dataFilename value as simulator-dataset-multiple-instances.json. Also, you need at least 2 OpenMRS instances running for this test.  
   
  You can execute the test with the below statement.  
    	behave --no-logcapture --include ./features/CBR_Multi_location_HIVCareContinuum  
