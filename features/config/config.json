@@ -1,0 +1,37 @@
+{
+   "dataFileName" : "simulator-dataset-small.json",   
+   "openmrsInstances":[
+      {
+         "id":1,
+         "instanceName":"OpenMRS ID2",
+         "baseUrl":"http://<server_url>:<port>/openmrs",
+         "username":"admin",
+         "password":"Admin123"        
+      },
+      {
+         "id":2,
+         "instanceName":"OpenMRS ID3",
+         "baseUrl":"http://<server_url>:<port>/openmrs",
+         "username":"admin",
+         "password":"Admin123"
+      }
+   ],
+   "openHIM":{
+      "baseUrl": "https://<server_url>:<port>",
+      "username":"admin",
+      "password":"Admin123"
+   },
+   "openEMPI":{
+      "baseUrl":"http://<server_url>:<port>/openempi-admin/openempi-ws-rest",
+      "username":"admin",
+      "password":"admin"
+   },
+   "openSHR":{
+      "baseUrl":"http://<server_url>:<port>/openmrs",
+      "username":"admin",
+      "password":"OpenSHR#123"
+   },
+   "HAPI-FHIR":{
+      "baseUrl":"http://<server_url>:<port>/hapi-fhir-jpaserver/fhir"
+   }
+}

@@ -1,0 +1,47 @@
+{
+    "patients":[
+        {
+            "identifier": 1,
+            "givenName": "Anne",
+            "middleName": "Belle",
+            "familyName": "Smith",
+            "gender": "F",
+            "birthdate": 11511
+        }
+    ],
+    "timelines":[        
+        {
+            "date": 1844,
+            "event": "hivTest",
+            "identifier": 1,
+            "value": "positive",
+            "server": 1
+        },
+        {
+            "date": 1844,
+            "event": "artStartDate",
+            "identifier": 1,
+            "server": 1
+        },
+        {
+            "date": 1780,
+            "event": "cd4Count",
+            "identifier": 1,
+            "value": "109",
+            "server": 1
+        },
+        {
+            "date": 1720,
+            "event": "viralLoad",
+            "identifier": 1,
+            "value": "5001",
+            "server": 1
+        }, 
+        {
+            "date": 1640,
+            "event": "deathdate",
+            "identifier": 1,
+            "server": 1
+        }
+    ]
+}
